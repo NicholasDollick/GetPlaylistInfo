@@ -44,6 +44,8 @@
             this.startButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -186,7 +188,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(249, 124);
+            this.label7.Location = new System.Drawing.Point(256, 105);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(179, 13);
             this.label7.TabIndex = 39;
@@ -202,11 +204,30 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(296, 127);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "Status: ";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(331, 127);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 13);
+            this.statusLabel.TabIndex = 42;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 310);
+            this.Controls.Add(this.statusLabel);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.startButton);
@@ -242,6 +263,8 @@
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label statusLabel;
     }
 }
 

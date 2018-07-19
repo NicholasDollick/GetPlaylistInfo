@@ -23,8 +23,8 @@ namespace KeyBPM
         private SpotifyWebAPI spotify;
         private PrivateProfile profile;
         private OpenFileDialog ofd = new OpenFileDialog();
-        private string[] keyDict = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" }; //these are all wrong for some reason
-        //private string filePath = "";
+        private string[] keyDict = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" }; // these are all wrong for some reason
+                                                                                                        // try printing how sure the api is of the key?
 
         public Form1()
         {
@@ -92,16 +92,15 @@ namespace KeyBPM
             List<FullTrack> tracks = new List<FullTrack>();
             XSSFWorkbook workbook = new XSSFWorkbook();
 
-            MessageBox.Show("Starting");
-
-            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
+            statusLabel.Text = "Starting";
             
 
             var playlist = spotify.GetPlaylistTracks(profile.Id, "6crTEjprqpnhmF04kjWEWu"); // Hardcoded for testing. Needs graceful update
             playlist.Items.ForEach(track => tracks.Add(track.Track));
 
             var sheet = workbook.CreateSheet("Sheet1");
-            sheet.CreateRow(0).CreateCell(0).SetCellValue("This Is A Test");
+
+            statusLabel.Text = "Analyzing";
 
             for (int i = 0; i < tracks.Count; i++) //row
             {
@@ -117,15 +116,15 @@ namespace KeyBPM
                 row.CreateCell(0).SetCellValue(tracks[i].Name);
                 row.CreateCell(1).SetCellValue(Math.Round(analysis.Track.Tempo));
                 row.CreateCell(2).SetCellValue(keyDict[analysis.Track.Key] + " " + mod);
-         
+                row.CreateCell(3).SetCellValue(analysis.Track.KeyConfidence);
+
             }
 
-            var sw = File.Create("test.xlsx");
+            var sw = File.Create("test3.xlsx");
 
             workbook.Write(sw);
             sw.Close();
-            System.Windows.Forms.Cursor.Current = Cursors.Default;
-            MessageBox.Show("Finished");
+            statusLabel.Text = "Finished";
         }
 
         private void exitButton_Click(object sender, EventArgs e)
