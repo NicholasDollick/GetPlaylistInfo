@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nameLabel = new System.Windows.Forms.Label();
@@ -39,23 +38,15 @@
             this.emailLabel = new System.Windows.Forms.Label();
             this.countryLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.playlistsListBox = new System.Windows.Forms.ListBox();
             this.authButton = new System.Windows.Forms.Button();
             this.URI = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(229, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 13);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Tracks Being Added:";
             // 
             // pictureBox
             // 
@@ -156,14 +147,6 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "Country:";
             // 
-            // playlistsListBox
-            // 
-            this.playlistsListBox.FormattingEnabled = true;
-            this.playlistsListBox.Location = new System.Drawing.Point(232, 46);
-            this.playlistsListBox.Name = "playlistsListBox";
-            this.playlistsListBox.Size = new System.Drawing.Size(190, 30);
-            this.playlistsListBox.TabIndex = 32;
-            // 
             // authButton
             // 
             this.authButton.Location = new System.Drawing.Point(34, 247);
@@ -176,7 +159,7 @@
             // 
             // URI
             // 
-            this.URI.Location = new System.Drawing.Point(315, 200);
+            this.URI.Location = new System.Drawing.Point(299, 146);
             this.URI.Name = "URI";
             this.URI.Size = new System.Drawing.Size(136, 20);
             this.URI.TabIndex = 36;
@@ -184,7 +167,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(249, 203);
+            this.label6.Location = new System.Drawing.Point(233, 149);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 37;
@@ -192,26 +175,45 @@
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(315, 351);
+            this.startButton.Location = new System.Drawing.Point(299, 275);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(75, 23);
             this.startButton.TabIndex = 38;
-            this.startButton.Text = "button1";
+            this.startButton.Text = "Run";
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(249, 124);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(179, 13);
+            this.label7.TabIndex = 39;
+            this.label7.Text = "Warning: This Might Take A While...";
+            // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(380, 275);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 40;
+            this.exitButton.Text = "Close";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 422);
+            this.ClientSize = new System.Drawing.Size(497, 310);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.URI);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.playlistsListBox);
             this.Controls.Add(this.authButton);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -224,8 +226,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label nameLabel;
@@ -236,11 +236,12 @@
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label countryLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox playlistsListBox;
         private System.Windows.Forms.Button authButton;
         private System.Windows.Forms.TextBox URI;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button exitButton;
     }
 }
 

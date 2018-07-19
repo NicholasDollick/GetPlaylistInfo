@@ -23,7 +23,7 @@ namespace KeyBPM
         private SpotifyWebAPI spotify;
         private PrivateProfile profile;
         private OpenFileDialog ofd = new OpenFileDialog();
-        private string[] keyDict = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
+        private string[] keyDict = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" }; //these are all wrong for some reason
         //private string filePath = "";
 
         public Form1()
@@ -90,40 +90,47 @@ namespace KeyBPM
             SearchItem song = new SearchItem();
             ErrorResponse response = new ErrorResponse();
             List<FullTrack> tracks = new List<FullTrack>();
+            XSSFWorkbook workbook = new XSSFWorkbook();
 
-            var playlist = spotify.GetPlaylistTracks(profile.Id, "6crTEjprqpnhmF04kjWEWu"); //this ID is hardcoded for testing. Please fix this
+            MessageBox.Show("Starting");
+
+            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
+            
+
+            var playlist = spotify.GetPlaylistTracks(profile.Id, "6crTEjprqpnhmF04kjWEWu"); // Hardcoded for testing. Needs graceful update
             playlist.Items.ForEach(track => tracks.Add(track.Track));
 
-            var analysis = spotify.GetAudioAnalysis(tracks[0].Id);
-            MessageBox.Show(tracks[0].Name);
-            //analysis.Track.ForEach(single => Console.WriteLine(single.Tempo));
-            //analysis.Track.ForEach(single => Console.WriteLine(single.Key));
-
-            //MessageBox.Show(analysis.Track.Key.ToString());
-            //MessageBox.Show(analysis.Track.Tempo.ToString());
-            //MessageBox.Show(analysis.Track.Mode.ToString());
-
-            var workbook = new XSSFWorkbook();
             var sheet = workbook.CreateSheet("Sheet1");
-
             sheet.CreateRow(0).CreateCell(0).SetCellValue("This Is A Test");
 
-            int x = 1;
-
-            for (int i = 1; i <= 15; i++) //row
+            for (int i = 0; i < tracks.Count; i++) //row
             {
-                IRow row = sheet.CreateRow(i);
+                var analysis = spotify.GetAudioAnalysis(tracks[i].Id);
+                var row = sheet.CreateRow(i);
+                string mod = "";
 
-                for (int j = 0; j < 15; j++) //column
-                {
-                    row.CreateCell(j).SetCellValue(x++);
-                }
+                if (analysis.Track.Mode == 1)
+                    mod = "maj";
+                else
+                    mod = "min";
+
+                row.CreateCell(0).SetCellValue(tracks[i].Name);
+                row.CreateCell(1).SetCellValue(Math.Round(analysis.Track.Tempo));
+                row.CreateCell(2).SetCellValue(keyDict[analysis.Track.Key] + " " + mod);
+         
             }
 
             var sw = File.Create("test.xlsx");
 
             workbook.Write(sw);
             sw.Close();
+            System.Windows.Forms.Cursor.Current = Cursors.Default;
+            MessageBox.Show("Finished");
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
